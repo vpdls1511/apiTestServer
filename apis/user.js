@@ -1,24 +1,27 @@
-const {names} = require("../lib/names");
+// http://localhost:3000/user
+
 const router = require('express').Router();
+const fs = require('fs');
 
-router.get('/', (req, res) => {
+router.get('/list', (req, res) => {
+    const jsonFile = fs.readFileSync('dummy/userList.json','utf-8');
+    const jsonData = JSON.parse(jsonFile);
+    const limit = req.query.limit ? req.query.limit : jsonData.length;
+
+    let sendData = []
+
+    jsonData.forEach( item => {
+        item.userid < limit && sendData.push(item);
+    })
+    res.json(sendData);
+})
+
+router.post('/login',(req, res) => {
+    const userData = { id : 'test', pw : 'test123' }
+    const postData = { id : req.body.id , pw : req.body.pw }
 
 
-    let jsonfile = []
-    for(let i = 0 ; i <= 20 ; i++){
-        let data = {
-            userid : i,
-            email : 'test@test.com',
-            pass : '@3jdfa#$42dkaf@3',
-            name : names[i*200],
-            ava : 'noHave',
-            age : 21 + parseInt(i),
-            sex : i%3 === 0 ? 'male' : 'female',
-        }
-        jsonfile.push(data)
-    }
 
-    res.json(jsonfile);
 })
 
 module.exports = router;
