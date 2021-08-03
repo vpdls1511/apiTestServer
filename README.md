@@ -16,7 +16,7 @@ running on localhost:3000
 /apis/user.js
 
 |  method  | adress | request | response |
-|   ---    |:---:| :---: | :---: |
+|   :---:    |:---:| :---: | :---: |
 |  `GET`   | /user/list     | `?limit={limitItems}` | userid : string <br/> email : string<br/> pass : string<br/> name : string<br/> ava : string<br/> age : number<br/> sex : string |
-|  `POST`  | /user/login    | ``userid  password`` | true /<br/> false(Not match password , Not match userid) |
+|  `POST`  | /user/login    | ``userid : string `` <br/> ``password : string`` | true /<br/> false(Mismatched password , Mismatched userid) |
 |  `POST`  | /user/regitser |  | |
