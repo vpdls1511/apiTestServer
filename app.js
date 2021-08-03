@@ -1,8 +1,9 @@
 // Basic Modules
 const express = require('express');
 const app = express();
-const {names} = require("./lib/names");
 
+// Module
+const bodyParser = require('body-parser')
 
 //serverSetting
 const port = '3000';
@@ -11,6 +12,7 @@ const port = '3000';
 const route = require('./apis/index');
 
 //routing
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/',  route);
 
 app.listen(port, () => {

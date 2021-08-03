@@ -17,11 +17,48 @@ router.get('/list', (req, res) => {
 })
 
 router.post('/login',(req, res) => {
-    const userData = { id : 'test', pw : 'test123' }
-    const postData = { id : req.body.id , pw : req.body.pw }
+    const userData = { id : 'test', pass : 'test123' }
+    const postData = { id : req.body.id , pass : req.body.pass }
+    if(userData.id === postData.id){
+        if(userData.pass === postData.pass){
+            res.json({
+                state:true,
+                message : 'Match Data'
+            })
+        }else{
+            res.json({
+                state:false,
+                message:'Mismatched password'
+            })
+        }
+    }else{
+        res.json({
+            state : false,
+            message : 'Mismatched userid'
+        })
+    }
+
+    res.end()
+})
 
 
+router.post('/register',(req, res) => {
+    const postData = {
+        userid : req.body.userid,
+        pass : req.body.pass,
+        name: req.body.name,
+        ava: req.body.ava,
+        age: req.body.age,
+        sex: req.body.sex
+    }
 
+    let state = true;
+    for(let data in postData) if(!postData[data]) state = false
+
+    if(state) res.json({state : true, message : 'register success'})
+    else res.json({state : false, message : 'field is empty'})
+
+    res.end()
 })
 
 module.exports = router;
