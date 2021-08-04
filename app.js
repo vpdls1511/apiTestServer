@@ -3,7 +3,8 @@ const express = require('express');
 const app = express();
 
 // Module
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 //serverSetting
 const port = '3000';
@@ -12,10 +13,10 @@ const port = '3000';
 const route = require('./apis/index');
 
 //routing
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use('/',  route);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
-
 })
