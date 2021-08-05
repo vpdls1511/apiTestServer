@@ -13,6 +13,7 @@ const port = '3000';
 const route = require('./apis/index');
 
 //routing
+app.use('/img',express.static('dummy/img'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use('/',  route);

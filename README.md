@@ -20,3 +20,10 @@ running on localhost:3000
 |  `GET`   | /user/list     | `?limit={limitItems}` | userid : string <br/> email : string<br/> pass : string<br/> name : string<br/> ava : string<br/> age : number<br/> sex : string |
 |  `POST`  | /user/login    | ``userid : string `` <br/> ``pass : string`` | state : boolean <br/> message : string |
 |  `POST`  | /user/regitser | ``userid : string `` <br/> ``pass : string`` <br/> ``name : string`` <br/> ``ava : string`` <br/> ``age : number`` <br/> ``sex : string``   | state:boolean<br/>message:string |
+
+/apis/desc.js
+
+|  method  | adress | request | response |
+|   :---:    |:---:| :---: | :---: |
+|  `GET`   | /desc/list     | `?limit={limitItems}` | id : string <br/>img : string<br/>title : string<br/>timeStamp : number<br/>like : number<br/>desc : string<br/>comment : array<br/>comment.user : string <br/>comment.timeStamp : number <br/>comment.comment : string <br/>comment.like : number <br/> |
+

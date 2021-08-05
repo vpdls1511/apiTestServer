@@ -2,9 +2,7 @@
 const router = require('express').Router();
 
 
-// Require Files
-const user = require('./user');
-
-router.use('/user', user)
+router.use('/user', require('./user'))
+router.use('/desc', require('./desc'))
 
 module.exports = router;
