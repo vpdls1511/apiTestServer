@@ -9,6 +9,7 @@ localhost:3000 포트에서 작동을 합니다.
 running on localhost:3000
 
 ---
+### `` $ yarn `` or `` $ npm install ``
 ### `` $ node app.js ``
 
 ---
