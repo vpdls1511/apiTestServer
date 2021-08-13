@@ -10,9 +10,11 @@
 const express = require('express');
 const app = express();
 
-// Module
+// Modules
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const session = require('express-session')
+const MySQLStore = require('express-mysql-session')(session)
 
 //serverSetting
 const port = '3000';
@@ -21,7 +23,24 @@ const port = '3000';
 const route = require('./apis/index');
 
 //routing
+const option = {
+    host : 'localhost',
+    port : 3306,
+    user : 'root',
+    password : 'root',
+    database : 'authtest'
+}
+const sessionOption = {
+    secret : 'YOUR_SECRET_KEY',
+    resave : false,
+    saveUninitialized : false,
+    store : new MySQLStore(option)
+}
+
+app.use(session(sessionOption))
 app.use('/img',express.static('dummy/img'))
+
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use('/',  route);
