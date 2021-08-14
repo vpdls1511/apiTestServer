@@ -38,12 +38,19 @@ const sessionOption = {
 }
 
 app.use(session(sessionOption))
+app.set('/views' , __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 app.use('/img',express.static('dummy/img'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use('/',  route);
+
+app.get('/page', (req, res) => {
+    res.render('index.ejs')
+})
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

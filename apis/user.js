@@ -17,28 +17,42 @@ router.get('/list', (req, res) => {
 })
 
 router.post('/login',(req, res) => {
-    const userData = { id : 'test', pass : 'test123' }
-    const postData = { id : req.body.id , pass : req.body.pass }
-    if(userData.id === postData.id){
-        if(userData.pass === postData.pass){
-            res.json({
-                state:true,
-                message : 'Match Data'
+    const userData = { id : 'test', password : 'test123' } // 임시 로그인 정보
+    const userData2 = { id : 'test2', password : 'test123' } // 임시 로그인 정보
+    const postData = { id : req.body.id , password : req.body.password } // 받아온 정보
+    console.log(postData)
+    if(userData.id === postData.id || userData2.id === postData.id){ // id 가 맞는지 검사
+        if(userData.password === postData.password || userData2.password === postData.password){ // password 가 맞는지 검사
+            req.session.displayName = postData.id // session.id 에 userData.id 를 저장
+            req.session.save(()=>{ // 저장 후 실행될 이벤트
+                res.json({
+                    state:true,
+                    message : 'Match Data'
+                })
             })
         }else{
+            console.log('Mismatched password')
             res.json({
                 state:false,
                 message:'Mismatched password'
             })
         }
     }else{
+        console.log('Mismatched userid')
         res.json({
             state : false,
             message : 'Mismatched userid'
         })
     }
-
-    res.end()
+})
+router.post('/logout',(req, res) => {
+    if(req.session.displayName){
+        console.log('Logout')
+        req.session.destroy(err => {
+            if(err) console.log(err)
+        })
+        res.end()
+    }
 })
 
 
