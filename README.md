@@ -29,3 +29,13 @@ running on localhost:3000
 |   :---:    |:---:| :---: | :---: |
 |  `GET`   | /desc/list     | `?limit={limitItems}` | id : string <br/>img : string<br/>title : string<br/>timeStamp : number<br/>like : number<br/>desc : string<br/>comment : array<br/>comment.user : string <br/>comment.timeStamp : number <br/>comment.comment : string <br/>comment.like : number <br/> |
 
+
+[ JWT Token Login ]
+/apis/user/auth.js
+
+|  method  | adress | request | response |
+|   :---:    |:---:| :---: | :---: |
+|  `GET`   | /auth/user     | `?id={userid}&pw:{userpw}` |accessToken : string <br/> refreshToken : string |
+|  `GET`   | /auth/token    | `header['authorization'] = "id accessToken" ` | id : string<br/>iat : number<br/>exp : number<br/> or <br/>error[400 / 403] |
+|  `post`  | /auth/token    | `refreshToken : string` | accessToken : string<br/> or <br/>error [403] |
+
