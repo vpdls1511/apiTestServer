@@ -39,3 +39,7 @@ running on localhost:3000
 |  `GET`   | /auth/token    | `header['authorization'] = "id accessToken" ` | id : string<br/>iat : number<br/>exp : number<br/> or <br/>error[400 / 403] |
 |  `post`  | /auth/token    | `refreshToken : string` | accessToken : string<br/> or <br/>error [403] |
 
+AccessToken expired = 10 min
+
+RefreshToken expired = 180 days
+

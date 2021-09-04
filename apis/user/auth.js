@@ -5,7 +5,8 @@ const user = require('../../controller/user')
 const {authenticate, token, authenticateAccessToken} = require('../../lib/auth/jwt')
 
 router.route('/user')
-    .get( authenticate , user.userLogin )
+    .post(user.userRegister) // 회원가입
+    .get( authenticate , user.userLogin ) // 로그인
 
 router.route('/token')
     .get(authenticateAccessToken, (req,res)=>{
